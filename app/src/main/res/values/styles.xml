@@ -1,0 +1,38 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--TextView-->
+    <style name="TextView"></style>
+    <style name="TextView.Title" >
+        <item name="android:textSize">@dimen/title_size</item>
+    </style>
+
+    <style name="TextView.SimpleText">
+        <item name="android:textSize">@dimen/simple_text_size</item>
+    </style>
+
+    <style name="TextView.PinCodeText">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/pin_code_text_size</item>
+    </style>
+
+    <!--pin code-->
+    <style name="PinCodeDot">
+        <item name="android:background">@drawable/pin_code_dot_selector</item>
+    </style>
+
+    <style name="Button" />
+
+    <style name="Button.PinCodeNumber">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/pin_code_button_selector</item>
+        <item name="android:textSize">40sp</item>
+    </style>
+</resources>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">My Notes</string>
+    <string name="enter_title_of_note">Enter title of note</string>
+    <string name="save">Save</string>
+    <string name="loading">Loading...</string>
+    <string name="cancel">Cancel</string>
+    <string name="exit_without_saving">Exit without saving</string>
+    <string name="enter_passcode">Enter Passcode</string>
+    <string name="set_password">Set password</string>
+    <string name="change_password">Change password</string>
+    <string name="wrong_password">Wrong password</string>
+    <string name="OK">OK</string>
+    <string name="remove_password">Remove password</string>
+    <string name="no_notes_yet">No notes yet</string>
+</resources>

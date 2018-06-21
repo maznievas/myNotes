@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="title_size">20sp</dimen>
+    <dimen name="simple_text_size">15sp</dimen>
+    <dimen name="small_padding">5dp</dimen>
+    <dimen name="normal_padding">10dp</dimen>
+    <dimen name="fab_size">80dp</dimen>
+    <dimen name="pin_code_button_width">75dp</dimen>
+    <dimen name="pin_code_text_size">20sp</dimen>
+</resources>
