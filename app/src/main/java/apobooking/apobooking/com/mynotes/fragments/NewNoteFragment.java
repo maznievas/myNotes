@@ -6,10 +6,12 @@ import android.inputmethodservice.ExtractEditText;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -36,6 +38,10 @@ public class NewNoteFragment extends MvpAppCompatFragment implements NewNoteView
     ExtractEditText content;
     @BindView(R.id.parentLayout)
     ViewGroup linearLayout;
+    @BindView(R.id.noteTitleTextView)
+    TextView noteTitle;
+    @BindView(R.id.titleLayout)
+    ViewGroup titleLayout;
     private Unbinder unbinder;
     private ProgressDialog progressDialog;
     private String contentRecieved = "";
@@ -61,6 +67,10 @@ public class NewNoteFragment extends MvpAppCompatFragment implements NewNoteView
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             title = bundle.getString(Const.FragmentDataTransfer.TITLE_BUNDLE, "");
+            if (!TextUtils.isEmpty(title)) {
+                titleLayout.setVisibility(View.VISIBLE);
+                noteTitle.setText(title);
+            }
             contentRecieved = bundle.getString(Const.FragmentDataTransfer.CONTENT_BUNDLE, "");
             id = bundle.getInt(Const.FragmentDataTransfer.NOTE_ID_BUNDLE, -1);
             content.setText(contentRecieved);
@@ -73,6 +83,7 @@ public class NewNoteFragment extends MvpAppCompatFragment implements NewNoteView
                         InputMethodManager.SHOW_FORCED, 0);
             }
         }
+
         return view;
     }
 

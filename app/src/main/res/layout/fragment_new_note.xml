@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/parentLayout"
-    android:padding="@dimen/small_padding">
+    android:id="@+id/parentLayout">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:id="@+id/titleLayout"
+        android:background="@color/colorPrimary">
+
+    <TextView
+        android:id="@+id/noteTitleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="dfg"
+        android:singleLine="true"
+        android:padding="@dimen/small_padding"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/title_size"
+        android:layout_centerInParent="true"/>
+    </RelativeLayout>
 
     <android.inputmethodservice.ExtractEditText
         android:layout_width="match_parent"
@@ -11,5 +32,6 @@
         android:id="@+id/contentEditText"
         android:background="@color/white"
         android:gravity="top|start"
+    android:padding="@dimen/small_padding"
      />
 </LinearLayout>

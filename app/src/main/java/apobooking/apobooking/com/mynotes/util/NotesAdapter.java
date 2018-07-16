@@ -1,5 +1,6 @@
 package apobooking.apobooking.com.mynotes.util;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
@@ -38,12 +39,12 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     private Shader textShader;
 
 
-    public NotesAdapter()
+    public NotesAdapter(int color)
     {
         notesList = new ArrayList<>();
         textShader = new LinearGradient(
                 0, 100, 0, 0,
-                Color.WHITE, Color.BLACK,
+              color, Color.BLACK,
                 Shader.TileMode.CLAMP );
     }
 
@@ -84,7 +85,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     @Override
     public int getItemCount() {
         if(notesList.size() == 0)
+        {
             return 0;
+        }
         else return notesList.size();
     }
 
@@ -100,6 +103,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         notesListener.noteDelete(noteItem);
         notesList.remove(position);
         notifyItemRemoved(position);
+        if(notesList.size() == 0)
+            notesListener.updateNoNotesTitle();
     }
 
     public void refresh(int itemId){
@@ -114,6 +119,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         void noteSelected(int id);
         void noteDelete(NoteItem noteItem);
         void noteSetPassword(NoteItem noteItem, float y);
+        void updateNoNotesTitle();
     }
 
     public void setNotesListener(NotesListener notesListener)

@@ -3,6 +3,7 @@ package apobooking.apobooking.com.mynotes.fragments;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,12 +89,26 @@ public class AllNotesFragment extends MvpAppCompatFragment implements AllNotesVi
         progressDialog.setTitle(getString(R.string.loading));
 
         notesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        notesAdapter = new NotesAdapter();
+        notesAdapter = new NotesAdapter(getContext().getResources().getColor(R.color.grey));
         notesAdapter.setNotesListener(this);
         notesRecyclerView.setAdapter(notesAdapter);
 
-        ItemTouchHelper.SimpleCallback simpleCallback = new SwipeController(notesAdapter, getContext());
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeController(getContext(), notesRecyclerView) {
+            @Override
+            public void instantiateUnderlayButton(RecyclerView.ViewHolder viewHolder, List<UnderlayButton> underlayButtons) {
+                underlayButtons.add(new SwipeController.UnderlayButton(
+                        "Delete",
+                        0,
+                        Color.parseColor("#FF3C30"),
+                        new SwipeController.UnderlayButtonClickListener() {
+                            @Override
+                            public void onClick(int pos) {
+                                notesAdapter.remove(pos);
+                                }
+                        }
+                ));
+            }
+        });
         itemTouchHelper.attachToRecyclerView(notesRecyclerView);
 
         allNotesPresenter.getAllNotes();
@@ -180,6 +196,11 @@ public class AllNotesFragment extends MvpAppCompatFragment implements AllNotesVi
         mPopupWindow.showAtLocation(parentLayout, Gravity.CENTER, 0, (int) y);
         background.setVisibility(View.VISIBLE);
         ((MainActivity) getActivity()).setFABVisible(false);
+    }
+
+    @Override
+    public void updateNoNotesTitle() {
+        noNotesTextView.setVisibility(View.VISIBLE);
     }
 
     @Override
